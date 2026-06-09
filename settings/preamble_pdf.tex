@@ -1,20 +1,17 @@
-\documentclass[
-14pt,
-candidate, % document type
-subf, % use and configure subfig package for nested figure numbering
-times % use Times font as main
-]{disser}
+\documentclass[utf8x, 14pt, oneside, a4paper]{article}
 
 % Кодировка и язык
 \usepackage[T2A]{fontenc} % поддержка кириллицы
 \usepackage[utf8]{inputenc} % кодировка исходного текста
 \usepackage[english,russian]{babel} % переключение языков
-%\usepackage[main=russian,english]{babel}
+\usepackage{extsizes} % Для добавления в параметры класса документа 14pt
+
 
 % Геометрия страницы и графика
-\usepackage[left=3cm, right=1cm, top=2cm, bottom=2cm]{geometry} % поля страницы
+\usepackage[left=30mm,right=15mm,top=20mm,bottom=20mm]{geometry} %ГОСТ 7.32-2017
 \usepackage{graphicx} % подключение графики
 \usepackage{pdfpages} % вставка pdf-страниц
+\usepackage{subcaption} % The original subfigure package is deprecated and obsolete; use the modern subcaption package instead
 
 % Таблицы
 \usepackage{array} % расширенные возможности для работы с таблицами
@@ -37,27 +34,23 @@ times % use Times font as main
 \usepackage{afterpage} % вставка материала после текущей страницы
 \usepackage[font=small]{caption} % настройка подписей к рисункам и таблицам
 \usepackage{setspace} % полуторный интервал, настройка отступов в таблицах
-\usepackage{fancyhdr} % установка колонтитулов
+%\usepackage{fancyhdr} % установка колонтитулов
 \usepackage{listings} % поддержка вставки исходного кода
 \usepackage{comment} % многострочные комменты
+\usepackage{enumitem} % change spaces between items in itemize and before itemize
+\usepackage{indentfirst} % add indent on first line after section etc. by default
 
 % Установка шрифта Times New Roman
 \renewcommand{\rmdefault}{ftm}
-%\usepackage{fontspec}
-%\setmainfont{Times New Roman}
-
-% Создание нового типа столбца для выравнивания содержимого по центру
-\newcommand{\PreserveBackslash}[1]{\let\temp=\\#1\let\\=\temp}
-\newcolumntype{C}[1]{>{\PreserveBackslash\centering}p{#1}}
 
 % Настройка стиля страницы
-\pagestyle{fancy}      % Использование стиля "fancy" для оформления страниц
-\fancyhf{}              % Очистка текущих значений колонтитулов
-\fancyfoot[C]{\thepage} % Установка номера страницы в нижнем колонтитуле по центру
-\renewcommand{\headrulewidth}{0pt} % Удаление разделительной линии в верхнем колонтитуле
+%\pagestyle{fancy}      % Использование стиля "fancy" для оформления страниц
+%\fancyhf{}              % Очистка текущих значений колонтитулов
+%\fancyfoot[C]{\thepage} % Установка номера страницы в нижнем колонтитуле по центру
+%\renewcommand{\headrulewidth}{0pt} % Удаление разделительной линии в верхнем колонтитуле
 
 % Настройка подписей к изображениям и таблицам
-\captionsetup{format=hang,labelsep=period}
+%\captionsetup{format=hang,labelsep=period}
 
 % Использование полужирного начертания для векторов
 \let\vec=\mathbf
@@ -69,46 +62,125 @@ times % use Times font as main
 \graphicspath{{images/}}
 
 % Установка стилей страницы и главы
-\pagestyle{footcenter}
-\chapterpagestyle{footcenter}
+%\pagestyle{footcenter}
+%\chapterpagestyle{footcenter}
 
-\usepackage{enumitem} % change spaces between items in itemize and before itemize
+\setlength{\parindent}{1.25cm} % отступ абзацев
+
 
 % \onehalfspacing -- works incorrect (https://tex.stackexchange.com/questions/65849/confusion-onehalfspacing-vs-spacing-vs-word-vs-the-world)
 \spacing{1.5} % полуторный интервал из setspace
 
-\setlist[itemize]{leftmargin=*, noitemsep, topsep=0pt}
-\setlist[enumerate]{noitemsep, topsep=0pt}
-
-% отступы перед и после картинок
-% https://tex.stackexchange.com/questions/77809/how-do-i-remove-white-space-before-or-after-the-figures-and-tables
-% https://tex.stackexchange.com/questions/60477/remove-space-after-figure-and-before-text
-\setlength{\floatsep}{7pt plus 2pt minus 2pt}
-\setlength{\textfloatsep}{7pt plus 2pt minus 2pt}
-\setlength{\intextsep}{7pt plus 2pt minus 2pt}
-
-
-% Настройка списка источников
-\makeatletter
-\renewenvironment{thebibliography}[1]{%
-  \bibsection
-  \list{\@biblabel{\@arabic\c@enumiv}}{%
-    \settowidth{\labelwidth}{\@biblabel{#1}}%
-    \setlength{\leftmargin}{1.25cm}%
-    \setlength{\labelsep}{1em}%
-    \usecounter{enumiv}%
-    \let\makelabel\@biblabel
-  }%
-}{%
-  \endlist
+% Для маркированных списков
+\setlist[itemize]{
+    wide=\parindent,    % Маркер встает ровно на уровень абзацного отступа
+    leftmargin=0pt,     % Текст при переносе уходит к самому левому краю
+    noitemsep,          % Убирает отступы между пунктами
+    topsep=0pt          % Убирает отступ перед списком
 }
-\renewcommand{\@biblabel}[1]{\hfill #1}
-\makeatother
+\renewcommand\labelitemi{---} % тире для перечислений
+
+% Для нумерованных списков
+\setlist[enumerate]{
+    label=\arabic*),    % Ваша нумерация со скобкой
+    wide=\parindent,    % Цифра встает на уровень абзацного отступа
+    leftmargin=0pt,     % Текст при переносе уходит к самому левому краю
+    noitemsep, 
+    topsep=0pt
+}
 
 
-% Настройка содержания
+
+
+
+% Библиография: отступы и межстрочный интервал
 \makeatletter
-% Выравниваем разделы и подразделы по левому краю (0pt отступа)
-\renewcommand*\l@section{\@dottedtocline{1}{0pt}{2em}}
-\renewcommand*\l@subsection{\@dottedtocline{2}{0pt}{2.5em}}
+\renewenvironment{thebibliography}[1]
+    {\section*{\refname}
+        \list{\@biblabel{\@arabic\c@enumiv}}
+           {\settowidth\labelwidth{\@biblabel{#1}}
+            \leftmargin\labelsep
+            \itemindent 16.7mm
+            \@openbib@code
+            \usecounter{enumiv}
+            \let\p@enumiv\@empty
+            \renewcommand\theenumiv{\@arabic\c@enumiv}
+            % Убираем все вертикальные промежутки
+            \setlength{\itemsep}{0pt}      % между пунктами
+            \setlength{\parsep}{0pt}       % между абзацами внутри пункта
+            \setlength{\topsep}{0pt}       % сверху/снизу списка
+            \setlength{\partopsep}{0pt}    % при разрыве списка на страницах
+        }
+    }
 \makeatother
+
+% Дополнительное окружения для подписей
+\usepackage{array}
+\newenvironment{signstabular}[1][1]{
+	\renewcommand*{\arraystretch}{#1}
+	\tabular
+}{
+	\endtabular
+}
+
+
+% Переопределение стандартных \section, \subsection, \subsubsection* по ГОСТу;
+% Переопределение их отступов до и после для 1.5 интервала во всем документе
+\usepackage{titlesec}
+
+\titleformat{\section}[block]
+{\bfseries\normalsize\filcenter}{\thesection}{1em}{}
+
+\titleformat{\subsection}[hang]
+{\bfseries\normalsize}{\thesubsection}{1em}{}
+\titlespacing\subsection{\parindent}{\parskip}{\parskip}
+
+\titleformat{\subsubsection}[hang]
+{\bfseries\normalsize}{\thesubsubsection}{1em}{}
+\titlespacing\subsubsection{\parindent}{\parskip}{\parskip}
+
+% Работа с изображениями и таблицами; переопределение названий по ГОСТу
+\usepackage{caption}
+
+% Создаем разделитель (среднее тире с пробелами)
+\DeclareCaptionLabelSeparator*{endash}{\space\textendash\space}
+
+% Общие настройки для ВСЕХ подписей (задаем обычный размер шрифта)
+\captionsetup{
+  font=normal,               % Устанавливает размер шрифта как у основного текста (14pt)
+  labelsep=endash            % Разделитель — среднее тире
+}
+
+% Настройки конкретно для РИСУНКОВ
+\captionsetup[figure]{
+  name={Рисунок},
+  position=bottom,
+  aboveskip=10pt,            % Зазор между рисунком и подписью
+  belowskip=-16pt            % Коррекция отступа после подписи рисунка
+}
+
+% Настройки конкретно для ТАБЛИЦ
+\captionsetup[table]{
+  position=top,
+  singlelinecheck=off,       % Отключает центрирование, если строка одна
+  justification=justified,   % Выравнивание по ширине (или raggedright для левого края)
+  aboveskip=5pt              % Зазор между подписью и таблицей
+}
+
+\usepackage{tocloft} % Настраиваем список литературы
+\cftsetindents{sec}{0em}{12pt}
+\cftsetindents{subsec}{0em}{22pt}
+\cftsetindents{subsubsec}{0em}{32pt}
+% Настраиваем заголовок оглавления через функции самого tocloft
+\renewcommand{\contentsname}{\hfill\bfseries\fontsize{16pt}{\baselineskip}\selectfont СОДЕРЖАНИЕ \hfill}
+\renewcommand{\cftaftertoctitle}{\hfill} % Выравнивание справа (вместе с \hfill выше дает центрирование)
+
+\renewcommand{\cftsecleader}{\cftdotfill{\cftdotsep}} % for sections, if you really want! (It is default in report and book class (So you may not need it)).
+\renewcommand{\cftsecfont}{\normalfont}
+\renewcommand{\cftsecpagefont}{\normalfont}
+\setlength{\cftbeforesecskip}{0pt}
+\providecommand{\BibUrl}[1]{\url{#1}}
+\providecommand{\BibAnnote}[1]{}
+\providecommand{\BibEmph}[1]{#1}
+
+\setlength{\intextsep}{9pt} %убрать отступ после подписи к рисунку

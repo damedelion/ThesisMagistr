@@ -1,5 +1,8 @@
 \newpage
-\addcontentsline{toc}{chapter}{СПИСОК ИСПОЛЬЗОВАННЫХ ИСТОЧНИКОВ} % это будет отображаться в содержании
-\renewcommand{\bibsection}{\centering\textbf{\large СПИСОК ИСПОЛЬЗОВАННЫХ ИСТОЧНИКОВ}} % смена названия библиографии по умолчанию
+\setlength{\parskip}{0.5em} %пространство перед заглавием и самим списком
+\renewcommand\refname{СПИСОК ИСПОЛЬЗОВАННЫХ ИСТОЧНИКОВ} % \refname, так как класс article
+\addcontentsline{toc}{section}{СПИСОК ИСПОЛЬЗОВАННЫХ ИСТОЧНИКОВ}
+\vspace{1em}
+
 \bibliographystyle{biblio/gost2008_new}
 \bibliography{biblio/biblio} % папка biblio, файл biblio.bib

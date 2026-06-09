@@ -1,9 +1,12 @@
 \newpage
-\begin{center}
-  \textbf{\large ЗАКЛЮЧЕНИЕ}
-\end{center}
-\refstepcounter{chapter}
-\addcontentsline{toc}{chapter}{ЗАКЛЮЧЕНИЕ}
+%Возвращаем выравнивание по центру
+\titleformat{\section}[block]
+{\bfseries\normalsize\filcenter}{\thesection}{1em}{}
+\titlespacing\section{0cm}{\parskip}{\parskip} 
+
+\section*{\fontsize{16pt}{\baselineskip}\selectfont ЗАКЛЮЧЕНИЕ}
+\addcontentsline{toc}{section}{ЗАКЛЮЧЕНИЕ}
+\vspace{0.5\baselineskip}    
 В ходе выполнения работы была построена численная модель динамики лазерно-индуцированного кавитационного пузыря вблизи торца волокна. 
 Моделирование проводилось методом конечных объёмов с использованием двухфазного описания среды и метода Volume of Fluid для отслеживания границы раздела жидкой и газовой фаз. 
 Такой подход позволил воспроизвести основные стадии развития кавитационного процесса: начальное образование газовой полости, её рост, последующий коллапс и релаксацию окружающей жидкости. 
