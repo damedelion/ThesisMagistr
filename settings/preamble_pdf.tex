@@ -39,8 +39,8 @@
 \usepackage{comment} % многострочные комменты
 \usepackage{enumitem} % change spaces between items in itemize and before itemize
 \usepackage{indentfirst} % add indent on first line after section etc. by default
-%\usepackage[none]{hyphenat} % отключение автоперенос
-\usepackage{float}
+\usepackage[none]{hyphenat} % отключение автопереноса
+\usepackage{float} % расположение картинок между абзацами с помощью \begin{figure}[H]
 
 % Установка шрифта Times New Roman
 \renewcommand{\rmdefault}{ftm}
@@ -186,3 +186,7 @@
 \providecommand{\BibEmph}[1]{#1}
 
 \setlength{\intextsep}{9pt} %убрать отступ после подписи к рисунку
+
+\hyphenpenalty=10000 % Устанавливает бесконечный штраф за перенос слова
+\exhyphenpenalty=10000 % Устанавливает бесконечный штраф за перенос через дефис
+\sloppy % Разрешает LaTeX сильнее растягивать пробелы, чтобы текст не вылезал за поля
