@@ -49,18 +49,18 @@
 В основе нашего моделирования используется уравнение Навье-Стокса, которое описывает движение вязкой жидкости, дополненное уравнениями неразрывности для обеспечения сохранения массы и импульса в системе:
 
 \vspace{1em}
-\begin{equation*}
+\begin{equation}
     \frac{\partial (\rho \mathbf{U})}{\partial t} + \nabla \cdot (\rho \mathbf{U} \otimes \mathbf{U}) = -\nabla p + \nabla \cdot \mathbf{T}
     + \int_{S(t)} \sigma \kappa (\mathbf{x'}) \hat{n}(\mathbf{x'}) \delta (\mathbf{x} - \mathbf{x'}) \, dS' ,
-\end{equation*}
+\end{equation}
 
-\begin{equation*}
+\begin{equation}
     \frac{\partial \rho}{\partial t} + \nabla \cdot (\rho \mathbf{U}) = 0
-\end{equation*}
+\end{equation}
 
-\begin{equation*}
+\begin{equation}
     \frac{\partial (\alpha_i \rho_i)}{\partial t} + \nabla \cdot (\alpha_i \rho_i \mathbf{U}) = 0
-\end{equation*}
+\end{equation}
 \vspace{1em}
 
 \noindent где\quad $\mathbf{T} = \mu \left( \nabla \mathbf{U} + (\nabla \mathbf{U})^T - \frac{2}{3} (\nabla \cdot \mathbf{U}) \mathbf{I} \right)$ – тензор вязких напряжений ньютоновской жидкости;
@@ -78,17 +78,17 @@ $\hat{n}$ – единичная нормаль к поверхности.
 Для расчета изменения давления и плотности во времени использовались уравнения состояния, такие как уравнение Тейта для жидкости:
 
 \vspace{1em}
-\begin{equation*}
+\begin{equation}
     \rho = \rho_0 \bigg(\frac{p + B}{p_0 + B}\bigg)^{\frac{1}{\gamma}}
-\end{equation*}
+\end{equation}
 \vspace{1em}
 
 и уравнение состояния идеального газа для пара:
 
 \vspace{1em}
-\begin{equation*}
+\begin{equation}
     \rho = \frac{p}{R T}
-\end{equation*}
+\end{equation}
 \vspace{1em}
 
 Такой подход обеспечил точное воспроизведение поведения кавитационного пузыря, включая распределение параметров, таких как давление, температура и поля скоростей, что необходимо для оценки их влияния на прилегающие материалы и структуры~\cite{10.1016/j.compfluid.2015.11.008}.
@@ -111,15 +111,15 @@ $\hat{n}$ – единичная нормаль к поверхности.
 Далее на каждом временном шаге для каждой ячейки решается дифференциальное уравнение переноса, описывающее, в том числе, эволюцию межфазной границы, и на основе полученного решения и предыдущих значений с помощью аппроксимации для поддержания неразрывности восстанавливается граница раздела.
 Такой подход позволяет отслеживать эволюцию фаз и точно моделировать формирование кавитационных пузырей и их взаимодействие с окружающей средой.
 Для разделения двух фаз вводятся объемные доли жидкости $\alpha _ {l} = \alpha$ и газа $\alpha _ {g}$:
-\begin{equation*}
+\begin{equation}
     \alpha _ {g}  (x,t) = 1 - \alpha _ {l}  (x,t)
-\end{equation*}
+\end{equation}
 
 Полные плотность и вязкость можно записать в виде:
-\begin{gather*}
+\begin{gather}
     \rho  (x,t)=  \alpha _ {l}  (x,t)  \rho _ {l}  (x,t)+  \alpha _ {g}  (x,t)  \rho _ {g}  (x,t) \\
     \mu  (x,t)=  \alpha _ {1}  (x,t)  \mu _ {1}  +  \alpha _ {g}  (x,t)  \mu _ {g}
-\end{gather*}
+\end{gather}
 
 \vspace{0.5\baselineskip}
 \subsection{Параметры моделирования}
